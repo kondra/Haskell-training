@@ -28,6 +28,14 @@ instance Functor List where
     fmap _ Empty = Empty
     fmap f (Cons x xs) = Cons (f x) $ fmap f xs
 
+{-
+concatList = 
+
+instance Monad List where
+    return = Cons
+    xs >>= f = concat $ map f xs
+-}
+
 sequenceA :: (Applicative f) => [f a] -> f [a]
 sequenceA [] = pure []
 sequenceA (x:xs) = (:) <$> x <*> sequenceA xs
